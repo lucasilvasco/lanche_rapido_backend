@@ -14,22 +14,16 @@ public class UsuarioService {
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;
-	
-	public Usuario authenticarUsuario(String email, String password) {
-		List<Usuario> list = usuarioRepository.findByEmailAndPassword(email, password);
-		if(!list.isEmpty()& list.size()==1) {
-			return list.get(0);
-		}
-		return new Usuario("","","");
-	}
-	
+		
 	public Boolean cadastraUsuario(Usuario usuario) {
 		String name = usuario.getName();
+		String cpf = usuario.getCpf();
+		String phone = usuario.getPhone();
 		String email = usuario.getEmail();
 		String password = usuario.getPassword();
 		
 		if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !emailExistente(email)) {
-				Usuario novoUsuario = new Usuario(name, email, password);
+				Usuario novoUsuario = new Usuario(name, cpf, phone, email, password);
 				usuarioRepository.save(novoUsuario);
 				return true;
 		}
