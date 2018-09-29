@@ -22,7 +22,7 @@ public class authController {
 	@Autowired
 	AuthService authService;
 	
-	@PostMapping("/")
+	@PostMapping
 	@CrossOrigin(origins="*")
 	public ResponseEntity<Usuario> logar(@RequestBody Usuario usuario) {	
 		Usuario response = authService.authenticarUsuario(usuario.getEmail().trim(),
